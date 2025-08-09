@@ -3,17 +3,17 @@
   "tasks": [
     {
       "type": "func",
-      "label": "func: host start",
+      "label": "func: host start (backend)",
       "command": "host start",
       "problemMatcher": "$func-python-watch",
       "isBackground": true,
-      "dependsOn": "pip install (functions)",
+      "dependsOn": "pip install(Backend)",
       "options": {
         "cwd": "${workspaceFolder}/apps/backend"
       }
     },
     {
-      "label": "pip install (functions)",
+      "label": "pip install(Backend)",
       "type": "shell",
       "osx": {
         "command": "${config:azureFunctions.pythonVenv}/bin/python -m pip install -r requirements.txt"
@@ -25,9 +25,57 @@
         "command": "${config:azureFunctions.pythonVenv}/bin/python -m pip install -r requirements.txt"
       },
       "problemMatcher": [],
+      "dependsOn": "python venv (backend)",
       "options": {
         "cwd": "${workspaceFolder}/apps/backend"
       }
+    },
+    {
+      "label": "python venv (backend)",
+      "type": "shell",
+      "command": "python3 -m venv .venv",
+      "options": {
+        "cwd": "${workspaceFolder}/apps/backend"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "func: host start (frontend)",
+      "type": "shell",
+      "command": ". .venv/bin/activate && streamlit run app.py",
+      "problemMatcher": "$func-python-watch",
+      "isBackground": true,
+      "dependsOn": "pip install(Frontend)",
+      "options": {
+        "cwd": "${workspaceFolder}/apps/frontend"
+      }
+    },
+    {
+      "label": "pip install(Frontend)",
+      "type": "shell",
+      "osx": {
+        "command": "${config:azureFunctions.pythonVenv}/bin/python -m pip install -r requirements.txt"
+      },
+      "windows": {
+        "command": "${config:azureFunctions.pythonVenv}/Scripts/python -m pip install -r requirements.txt"
+      },
+      "linux": {
+        "command": "${config:azureFunctions.pythonVenv}/bin/python -m pip install -r requirements.txt"
+      },
+      "problemMatcher": [],
+      "dependsOn": "python venv (frontend)",
+      "options": {
+        "cwd": "${workspaceFolder}/apps/frontend"
+      }
+    },
+    {
+      "label": "python venv (frontend)",
+      "type": "shell",
+      "command": "python3 -m venv .venv && . .venv/bin/activate",
+      "options": {
+        "cwd": "${workspaceFolder}/apps/frontend"
+      },
+      "problemMatcher": []
     }
   ]
 }

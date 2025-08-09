@@ -12,5 +12,6 @@
     "azureFunctions.projectRuntime": "~4",
     "debug.internalConsoleOptions": "neverOpen",
     "azureFunctions.projectLanguageModel": 2,
-    "azureFunctions.projectSubpath": "apps/backend"
+    "azureFunctions.projectSubpath": "apps/backend",
+    "editor.fontFamily": "BIZ UDゴシック"
 }

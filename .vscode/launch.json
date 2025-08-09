@@ -2,14 +2,24 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Attach to Python Functions",
+      "name": "Attach to Backend",
       "type": "debugpy",
       "request": "attach",
       "connect": {
         "host": "localhost",
         "port": 9091
       },
-      "preLaunchTask": "func: host start"
+      "preLaunchTask": "func: host start (backend)"
+    },
+    {
+      "name": "Attach to Frontend",
+      "type": "debugpy",
+      "request": "attach",
+      "connect": {
+        "host": "localhost",
+        "port": 8501
+      },
+      "preLaunchTask": "func: host start (frontend)"
     }
   ]
 }
